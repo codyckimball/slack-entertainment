@@ -10,15 +10,16 @@ CREATE TABLE IF NOT EXISTS show
  year INTEGER NOT NULL,
  release_date DATE,
  runtime INTEGER,
- genre TEXT,
+ genre TEXT[],
  director TEXT,
  written_by TEXT,
  synopsis TEXT,
  actors TEXT,
  awards TEXT,
- imdb_rating TEXT,
- rotten_tomatoes_rating TEXT,
- total_seasons TEXT )
+ imdb_rating NUMERIC (3, 1),
+ rotten_tomatoes_rating NUMERIC (3, 2),
+ total_seasons TEXT,
+ show_type TEXT )
 
 CREATE TABLE IF NOT EXISTS rating
 ( rating_id SERIAL PRIMARY KEY,
