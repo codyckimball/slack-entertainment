@@ -32,11 +32,13 @@ CREATE TABLE IF NOT EXISTS rating
   #INSERT INTO rating 
   #(user_id, imdb_id, rating, comment) VALUES ()
 
+  /* Get average rating for a specified show */
   SELECT AVG(rating) from rating 
   JOIN show
   ON rating.imdb_id = show.imdb_id
   WHERE show.title = "<some value>";
 
+  /* Get title, rating, and comment for all shows that a specified user has rated */
   SELECT s.title, r.rating, r.comment
   FROM show as s
   JOIN rating as r
@@ -45,6 +47,7 @@ CREATE TABLE IF NOT EXISTS rating
   ON r.user_id = u.user_id
   WHERE u.slack_id = "<some value>";
 
+  /* Get title, average rating for top ten movies/series from database */
   SELECT s.title, AVG(r.rating) as avg from rating as r  
   JOIN show as s 
   ON rating.imdb_id = show.imdb_id
@@ -52,5 +55,14 @@ CREATE TABLE IF NOT EXISTS rating
   GROUP BY s.title
   ORDER BY avg DESC limit 10;
 
+  /* Get all metadata for a specified show */
   SELECT * from show WHERE title = "<some value>";
 
+  /* Get title, rating and comment for a specified show made by a specified user */
+  SELECT s.title, r.rating, r.comment
+  FROM show as s
+  JOIN rating as r 
+  ON s.imdb_id = r.imdb_id 
+  JOIN user as u 
+  ON r.user_id = u.user_id
+  WHERE u.slack_id = "<some value>" and s.title = "<some value>";
