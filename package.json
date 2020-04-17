@@ -1,7 +1,7 @@
 {
     "name": "slack-entertainment",
     "version": "0.0.1",
-    "description": "",
+    "description": "The backend resource (typescript) to the Slack app 'Show Starter'",
     "main": "index.js",
     "scripts": {
         "start": "webpack-dev-server"
